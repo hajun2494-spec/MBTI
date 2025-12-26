@@ -1,0 +1,342 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nanum Square', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    position: relative;
+}
+
+.screen {
+    display: none;
+    padding: 40px;
+    min-height: 500px;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* 시작 화면 */
+.start-content {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.start-content h1 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: 800;
+}
+
+.intro-text {
+    font-size: 1.1em;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+.intro-text span {
+    font-weight: 700;
+    color: #667eea;
+}
+
+/* 진행 바 */
+.progress-container {
+    margin-bottom: 40px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    text-align: center;
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* 문항 화면 */
+.question-container {
+    text-align: center;
+}
+
+.question-text {
+    font-size: 1.4em;
+    color: #333;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    font-weight: 700;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.likert-scale {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.likert-option {
+    flex: 1;
+    min-width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    padding: 15px 10px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.likert-option:has(input[type="radio"][value="0"]) {
+    border: 2px dashed #999;
+}
+
+.likert-option:hover {
+    background: #f5f5f5;
+    border-color: #667eea;
+}
+
+.likert-option input[type="radio"] {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    accent-color: #667eea;
+}
+
+.likert-option input[type="radio"]:checked + .option-text {
+    color: #667eea;
+    font-weight: 700;
+}
+
+.likert-option:has(input[type="radio"]:checked) {
+    background: #f0f0ff;
+    border-color: #667eea;
+}
+
+.option-text {
+    font-size: 0.9em;
+    color: #666;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* 버튼 */
+.btn {
+    padding: 15px 40px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Nanum Square', sans-serif;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(108, 117, 125, 0.4);
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* 결과 화면 */
+.result-content {
+    text-align: center;
+    padding: 20px;
+}
+
+.result-content h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: 800;
+}
+
+.result-type {
+    font-size: 4em;
+    font-weight: 800;
+    color: #667eea;
+    margin: 30px 0;
+    letter-spacing: 0.1em;
+}
+
+.result-strengths {
+    margin: 30px 0;
+}
+
+.strength-item {
+    margin: 15px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.strength-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: #333;
+}
+
+.strength-bar-container {
+    width: 100%;
+    height: 20px;
+    background: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.strength-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    transition: width 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.8em;
+    font-weight: 700;
+}
+
+.strength-value {
+    margin-left: 10px;
+    font-weight: 700;
+    color: #667eea;
+}
+
+.result-details {
+    margin: 30px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.result-details h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.result-details p {
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+.result-warnings {
+    margin: 20px 0;
+    padding: 15px;
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    border-radius: 5px;
+    text-align: left;
+    color: #856404;
+}
+
+.result-warnings h4 {
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.result-warnings ul {
+    margin-left: 20px;
+}
+
+.result-warnings li {
+    margin: 5px 0;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .likert-scale {
+        flex-direction: column;
+    }
+
+    .likert-option {
+        flex-direction: row;
+        justify-content: flex-start;
+        min-width: auto;
+    }
+
+    .likert-option input[type="radio"] {
+        margin-right: 15px;
+        margin-bottom: 0;
+    }
+
+    .question-text {
+        font-size: 1.2em;
+    }
+
+    .result-type {
+        font-size: 3em;
+    }
+}
+
